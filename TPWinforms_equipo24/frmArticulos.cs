@@ -14,6 +14,7 @@ namespace TPWinforms_equipo24
 {
     public partial class frmArticulos : Form
     {
+        private List<Articulo> listaArticulos;
         public frmArticulos()
         {
             InitializeComponent();
@@ -23,7 +24,14 @@ namespace TPWinforms_equipo24
         private void frmArticulos_Load(object sender, EventArgs e)
         {
            ArticulosNegocio articulosNegocio = new ArticulosNegocio();
-           dgvArticulos.DataSource = articulosNegocio.TraerListado();
+            listaArticulos = articulosNegocio.TraerListado();
+            dgvArticulos.DataSource = listaArticulos;
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregarArticulo alta=new frmAgregarArticulo();
+            alta.ShowDialog();
         }
     }
 }

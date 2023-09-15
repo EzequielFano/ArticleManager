@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace Negocio
 {
@@ -27,6 +28,12 @@ namespace Negocio
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = consulta;
         }
+
+        public SqlConnection GetConexion()
+        {
+            return conexion;
+        }
+
         public void ejecutarLectura()
         {
             comando.Connection = conexion;
@@ -41,6 +48,21 @@ namespace Negocio
                 throw ex;
             }
         }
+        public void ejercutarAccion()
+        {
+                comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
+        }
         public void cerrarConexion()
         {
             if (lector != null)
@@ -48,6 +70,11 @@ namespace Negocio
                 lector.Close();
             }
             conexion.Close();
+        }
+        public void setearParametro(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre,valor);
+
         }
     }
 }
