@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select A.Id,A.Codigo,A.Nombre, A.Descripcion,M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio FROM ARTICULOS A,MARCAS M, CATEGORIAS C WHERE A.Id = M.Id and A.Id = C.Id");
+                datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria,A.Precio, IM.ImagenUrl from ARTICULOS A INNER join IMAGENES IM ON A.Id= IM.IdArticulo INNER JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -31,6 +32,8 @@ namespace Negocio
                     aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
                     aux.Precio = (int)datos.Lector.GetSqlMoney(6);
+                    aux.URLImagen= new Imagen();
+                    aux.URLImagen.URL = (string)datos.Lector["ImagenUrl"];
                     articulos.Add(aux);
 
                 }
@@ -50,12 +53,21 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("insert into ARTICULOS (Nombre,Descripcion,IdMarca,IdCategoria,Precio) values (@Nombre,@Descripcion,@IdMarca,@IdCategoria,@Precio)");
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
+                Imagen imag = new Imagen();
+
+                datos.setearConsulta("insert into ARTICULOS (Codigo,Nombre,Descripcion,IdMarca,IdCategoria,Precio) values (@Codigo,@Nombre,@Descripcion,@IdMarca,@IdCategoria,@Precio)");
+                datos.setearParametro("@Codigo", articulo.CodigoArticulo);
                 datos.setearParametro("@Nombre", articulo.NombreArticulo);
                 datos.setearParametro("@Descripcion", articulo.Descripcion);
                 datos.setearParametro("@IdMarca", articulo.Marca.Id);
                 datos.setearParametro("@IdCategoria", articulo.Categoria.Id);
                 datos.setearParametro("@Precio", articulo.Precio);
+                datos.ejercutarAccion();
+                imag = imagenNegocio.ObtenerIDarticuloCargado();
+                datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo,ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)");
+                datos.setearParametro("@IdArticulo", imag.IdImagen);
+                datos.setearParametro("@ImagenUrl", articulo.URLImagen.URL);
                 datos.ejercutarAccion();
             }
             catch (Exception ex)
@@ -63,7 +75,7 @@ namespace Negocio
 
                 throw ex;
             }
-            finally { datos.cerrarConexion();}
+                         
         }
         public void eliminarArticulo()
         {

@@ -42,27 +42,33 @@ namespace TPWinforms_equipo24
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Articulo art = new Articulo();
+                    ArticulosNegocio negocio = new ArticulosNegocio();
+                    Articulo art = new Articulo();
             try
-            {
+            { 
                 art.CodigoArticulo = txtCodigo.Text;
                 art.NombreArticulo = txtNombre.Text;
                 art.Descripcion = txtDescripcion.Text;
                 art.Marca = (Marca)cboMarca.SelectedItem;
                 art.Categoria = (Categoria)cboCategoria.SelectedItem;
-                art.Imagen = txtURL.Text;
+                art.URLImagen = new Imagen();
+                art.URLImagen.URL = txtURL.Text;
                 art.Precio = float.Parse(txtPrecio.Text);
-                ArticulosNegocio negocio = new ArticulosNegocio();
                 negocio.agregarArticulo(art);
                 MessageBox.Show("Agregado correctamente");
                 Close();
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
+            
         }
 
+       
+
+        
     }
 }
