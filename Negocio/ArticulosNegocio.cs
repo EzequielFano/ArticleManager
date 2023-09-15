@@ -17,19 +17,20 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select A.Id, A.Nombre, A.Descripcion,M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio FROM ARTICULOS A,MARCAS M, CATEGORIAS C WHERE A.Id = M.Id and A.Id = C.Id");
+                datos.setearConsulta("select A.Id,A.Codigo,A.Nombre, A.Descripcion,M.Descripcion as Marca, C.Descripcion as Categoria, A.Precio FROM ARTICULOS A,MARCAS M, CATEGORIAS C WHERE A.Id = M.Id and A.Id = C.Id");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
                     aux.IdArticulo = datos.Lector.GetInt32(0);
+                    aux.CodigoArticulo = (string)datos.Lector["Codigo"];
                     aux.NombreArticulo = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Marca = new Marca();
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
-                    aux.Precio = (int)datos.Lector.GetSqlMoney(5);
+                    aux.Precio = (int)datos.Lector.GetSqlMoney(6);
                     articulos.Add(aux);
 
                 }

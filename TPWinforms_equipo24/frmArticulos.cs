@@ -26,6 +26,7 @@ namespace TPWinforms_equipo24
            ArticulosNegocio articulosNegocio = new ArticulosNegocio();
             listaArticulos = articulosNegocio.TraerListado();
             dgvArticulos.DataSource = listaArticulos;
+            dgvArticulos.Columns["Imagen"].Visible = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

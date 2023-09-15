@@ -42,32 +42,34 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.cboCategoria = new System.Windows.Forms.ComboBox();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(159, 73);
+            this.txtDescripcion.Location = new System.Drawing.Point(159, 128);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(119, 20);
             this.txtDescripcion.TabIndex = 1;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(159, 47);
+            this.txtNombre.Location = new System.Drawing.Point(159, 102);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(119, 20);
             this.txtNombre.TabIndex = 3;
             // 
             // txtURL
             // 
-            this.txtURL.Location = new System.Drawing.Point(159, 156);
+            this.txtURL.Location = new System.Drawing.Point(159, 211);
             this.txtURL.Name = "txtURL";
             this.txtURL.Size = new System.Drawing.Size(119, 20);
             this.txtURL.TabIndex = 5;
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(159, 182);
+            this.txtPrecio.Location = new System.Drawing.Point(159, 237);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(119, 20);
             this.txtPrecio.TabIndex = 6;
@@ -75,7 +77,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(79, 50);
+            this.lblNombre.Location = new System.Drawing.Point(79, 105);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
             this.lblNombre.TabIndex = 8;
@@ -84,7 +86,7 @@
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(79, 76);
+            this.lblDescripcion.Location = new System.Drawing.Point(79, 131);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(66, 13);
             this.lblDescripcion.TabIndex = 9;
@@ -93,7 +95,7 @@
             // lblMarca
             // 
             this.lblMarca.AutoSize = true;
-            this.lblMarca.Location = new System.Drawing.Point(79, 107);
+            this.lblMarca.Location = new System.Drawing.Point(79, 162);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(40, 13);
             this.lblMarca.TabIndex = 10;
@@ -102,7 +104,7 @@
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(79, 134);
+            this.lblCategoria.Location = new System.Drawing.Point(79, 189);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(55, 13);
             this.lblCategoria.TabIndex = 11;
@@ -111,7 +113,7 @@
             // lblImagen
             // 
             this.lblImagen.AutoSize = true;
-            this.lblImagen.Location = new System.Drawing.Point(79, 159);
+            this.lblImagen.Location = new System.Drawing.Point(79, 214);
             this.lblImagen.Name = "lblImagen";
             this.lblImagen.Size = new System.Drawing.Size(45, 13);
             this.lblImagen.TabIndex = 12;
@@ -120,7 +122,7 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(79, 185);
+            this.lblPrecio.Location = new System.Drawing.Point(79, 240);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(40, 13);
             this.lblPrecio.TabIndex = 13;
@@ -150,7 +152,7 @@
             // 
             this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarca.FormattingEnabled = true;
-            this.cboMarca.Location = new System.Drawing.Point(159, 102);
+            this.cboMarca.Location = new System.Drawing.Point(159, 157);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(121, 21);
             this.cboMarca.TabIndex = 16;
@@ -159,16 +161,34 @@
             // 
             this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.FormattingEnabled = true;
-            this.cboCategoria.Location = new System.Drawing.Point(159, 129);
+            this.cboCategoria.Location = new System.Drawing.Point(159, 184);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(121, 21);
             this.cboCategoria.TabIndex = 17;
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Location = new System.Drawing.Point(83, 76);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(43, 13);
+            this.lblCodigo.TabIndex = 18;
+            this.lblCodigo.Text = "Codigo:";
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Location = new System.Drawing.Point(159, 73);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(119, 20);
+            this.txtCodigo.TabIndex = 19;
             // 
             // frmAgregarArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(366, 390);
+            this.Controls.Add(this.txtCodigo);
+            this.Controls.Add(this.lblCodigo);
             this.Controls.Add(this.cboCategoria);
             this.Controls.Add(this.cboMarca);
             this.Controls.Add(this.btnCancelar);
@@ -206,5 +226,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox cboMarca;
         private System.Windows.Forms.ComboBox cboCategoria;
+        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.TextBox txtCodigo;
     }
 }

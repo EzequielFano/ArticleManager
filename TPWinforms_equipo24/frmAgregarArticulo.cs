@@ -45,7 +45,7 @@ namespace TPWinforms_equipo24
             Articulo art = new Articulo();
             try
             {
-                
+                art.CodigoArticulo = txtCodigo.Text;
                 art.NombreArticulo = txtNombre.Text;
                 art.Descripcion = txtDescripcion.Text;
                 art.Marca = (Marca)cboMarca.SelectedItem;
