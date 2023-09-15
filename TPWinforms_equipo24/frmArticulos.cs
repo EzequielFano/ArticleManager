@@ -22,8 +22,8 @@ namespace TPWinforms_equipo24
 
         private void frmArticulos_Load(object sender, EventArgs e)
         {
-           DBConexion dBConexion = new DBConexion();
-           dgvArticulos.DataSource = dBConexion.TraerListado();
+           ArticulosNegocio articulosNegocio = new ArticulosNegocio();
+           dgvArticulos.DataSource = articulosNegocio.TraerListado();
         }
     }
 }

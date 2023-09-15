@@ -18,6 +18,7 @@ namespace TPWinforms_equipo24
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmArticulos());
+            
         }
     }
 }
