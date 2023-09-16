@@ -14,9 +14,16 @@ namespace TPWinforms_equipo24
 {
     public partial class frmAgregarArticulo : Form
     {
+        private Articulo articulo = null;
         public frmAgregarArticulo()
         {
             InitializeComponent();
+        }
+        public frmAgregarArticulo(Articulo articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
+            Text = "Modificar Articulo";
         }
         private void frmAgregarArticulo_Load(object sender, EventArgs e)
         {
@@ -25,7 +32,26 @@ namespace TPWinforms_equipo24
             try
             {
                 cboMarca.DataSource = marcaNegocio.listar();
-                cboCategoria.DataSource = categoriaNegocio.listar();    
+                cboMarca.ValueMember = "Id";
+                cboMarca.DisplayMember = "Descripcion";
+                cboCategoria.DataSource = categoriaNegocio.listar();
+                cboCategoria.ValueMember = "Id";
+                cboCategoria.DisplayMember = "Descripcion";
+
+                if (articulo!=null)
+                {
+                    txtCodigo.Text = articulo.CodigoArticulo;
+                    txtDescripcion.Text = articulo.Descripcion;
+                    txtNombre.Text = articulo.NombreArticulo;
+                    txtPrecio.Text = articulo.Precio.ToString();
+                    txtURL.Text = articulo.URLImagen.URL;
+                    cargarImagen(articulo.URLImagen.URL);
+                    cboMarca.SelectedValue = articulo.Marca.Id;
+                    cboCategoria.SelectedValue = articulo.Categoria.Id;
+
+
+
+                }
 
             }
             catch (Exception ex)
@@ -42,20 +68,29 @@ namespace TPWinforms_equipo24
 
         private void button1_Click(object sender, EventArgs e)
         {
-                    ArticulosNegocio negocio = new ArticulosNegocio();
-                    Articulo art = new Articulo();
+                   
+            
+                ArticulosNegocio negocio = new ArticulosNegocio();
             try
             { 
-                art.CodigoArticulo = txtCodigo.Text;
-                art.NombreArticulo = txtNombre.Text;
-                art.Descripcion = txtDescripcion.Text;
-                art.Marca = (Marca)cboMarca.SelectedItem;
-                art.Categoria = (Categoria)cboCategoria.SelectedItem;
-                art.URLImagen = new Imagen();
-                art.URLImagen.URL = txtURL.Text;
-                art.Precio = float.Parse(txtPrecio.Text);
-                negocio.agregarArticulo(art);
+                if (articulo != null)
+                {
+                    articulo = new Articulo();
+                }
+                articulo.CodigoArticulo = txtCodigo.Text;
+                articulo.NombreArticulo = txtNombre.Text;
+                articulo.Descripcion = txtDescripcion.Text;
+                articulo.Marca = (Marca)cboMarca.SelectedItem;
+                articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+                articulo.URLImagen = new Imagen();
+                articulo.URLImagen.URL = txtURL.Text;
+                articulo.Precio = float.Parse(txtPrecio.Text);
+
+
+                negocio.agregarArticulo(articulo);
                 MessageBox.Show("Agregado correctamente");
+
+               
                 Close();
                 
             }

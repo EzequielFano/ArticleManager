@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
@@ -18,7 +19,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria,A.Precio, IM.ImagenUrl from ARTICULOS A INNER join IMAGENES IM ON A.Id= IM.IdArticulo INNER JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id");
+                datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca,A.IdCategoria,A.IdMarca, C.Descripcion Categoria,A.Precio, IM.ImagenUrl from ARTICULOS A INNER join IMAGENES IM ON A.Id= IM.IdArticulo INNER JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id\r\n");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -29,11 +30,16 @@ namespace Negocio
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Marca = new Marca();
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
-                    aux.Precio = (int)datos.Lector.GetSqlMoney(6);
+                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                    aux.Precio = (int)datos.Lector.GetSqlMoney(8);
                     aux.URLImagen= new Imagen();
-                    aux.URLImagen.URL = (string)datos.Lector["ImagenUrl"];
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                    {
+                        aux.URLImagen.URL = (string)datos.Lector["ImagenUrl"];
+                    }
                     articulos.Add(aux);
 
                 }

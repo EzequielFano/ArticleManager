@@ -28,10 +28,19 @@ namespace TPWinforms_equipo24
         private void Cargar()
         {
             ArticulosNegocio articulosNegocio = new ArticulosNegocio();
+            try
+            {
             listaArticulos = articulosNegocio.TraerListado();
             dgvArticulos.DataSource = listaArticulos;
+            dgvArticulos.Columns["IdArticulo"].Visible = false;
             dgvArticulos.Columns["URLImagen"].Visible = false;
             pbxArticulo.Load(listaArticulos[0].URLImagen.URL);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -62,7 +71,9 @@ namespace TPWinforms_equipo24
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            frmAgregarArticulo modificar = new frmAgregarArticulo();
+            Articulo Seleccionado;
+            Seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmAgregarArticulo modificar = new frmAgregarArticulo(Seleccionado);
             modificar.ShowDialog();
             Cargar();
 
