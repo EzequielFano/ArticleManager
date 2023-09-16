@@ -27,12 +27,32 @@ namespace TPWinforms_equipo24
             listaArticulos = articulosNegocio.TraerListado();
             dgvArticulos.DataSource = listaArticulos;
             dgvArticulos.Columns["URLImagen"].Visible = false;
+            pbxArticulo.Load(listaArticulos[0].URLImagen.URL);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarArticulo alta=new frmAgregarArticulo();
             alta.ShowDialog();
+        }
+
+        private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+        {
+            
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            cargarImagen(seleccionado.URLImagen.URL);
+           
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxArticulo.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pbxArticulo.Load("https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png");
+            }
         }
     }
 }
