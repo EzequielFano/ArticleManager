@@ -19,11 +19,10 @@ namespace TPWinforms_equipo24
         {
             InitializeComponent();
         }
-
-
-        private void frmArticulos_Load(object sender, EventArgs e)
+        private void ocultarColumnas()
         {
-            Cargar();
+            dgvArticulos.Columns["IdArticulo"].Visible = false;
+            dgvArticulos.Columns["URLImagen"].Visible = false;
         }
         private void Cargar()
         {
@@ -32,8 +31,7 @@ namespace TPWinforms_equipo24
             {
             listaArticulos = articulosNegocio.TraerListado();
             dgvArticulos.DataSource = listaArticulos;
-            dgvArticulos.Columns["IdArticulo"].Visible = false;
-            dgvArticulos.Columns["URLImagen"].Visible = false;
+            ocultarColumnas();
             pbxArticulo.Load(listaArticulos[0].URLImagen.URL);
             }
             catch (Exception ex)
@@ -41,6 +39,10 @@ namespace TPWinforms_equipo24
 
                 throw ex;
             }
+        }
+        private void frmArticulos_Load(object sender, EventArgs e)
+        {
+            Cargar();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -52,9 +54,11 @@ namespace TPWinforms_equipo24
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            
-            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            cargarImagen(seleccionado.URLImagen.URL);
+            if(dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.URLImagen.URL);
+            }
            
         }
         private void cargarImagen(string imagen)
@@ -77,6 +81,29 @@ namespace TPWinforms_equipo24
             modificar.ShowDialog();
             Cargar();
 
+        }
+
+        private void btnFiltroRapido_Click(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = txtFiltroRapido.Text;
+
+            if (filtro != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.NombreArticulo.ToUpper().Contains(filtro.ToUpper())
+                || x.CodigoArticulo.ToUpper().Contains(filtro.ToUpper())
+                || x.Descripcion.ToUpper().Contains(filtro.ToUpper())
+                || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper())
+                || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaArticulos;
+            }
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
         }
     }
 }
