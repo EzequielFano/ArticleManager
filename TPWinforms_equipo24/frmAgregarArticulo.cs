@@ -67,8 +67,21 @@ namespace TPWinforms_equipo24
             
         }
 
-       
+        private void txtURL_Leave(object sender, EventArgs e)
+        {
+            cargarImagen(txtURL.Text);
+        }
 
-        
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxArticuloCarga.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pbxArticuloCarga.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
+            }
+        }
     }
 }

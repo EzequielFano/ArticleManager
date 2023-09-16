@@ -23,7 +23,11 @@ namespace TPWinforms_equipo24
 
         private void frmArticulos_Load(object sender, EventArgs e)
         {
-           ArticulosNegocio articulosNegocio = new ArticulosNegocio();
+            Cargar();
+        }
+        private void Cargar()
+        {
+            ArticulosNegocio articulosNegocio = new ArticulosNegocio();
             listaArticulos = articulosNegocio.TraerListado();
             dgvArticulos.DataSource = listaArticulos;
             dgvArticulos.Columns["URLImagen"].Visible = false;
@@ -34,6 +38,7 @@ namespace TPWinforms_equipo24
         {
             frmAgregarArticulo alta=new frmAgregarArticulo();
             alta.ShowDialog();
+            Cargar();
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -51,8 +56,16 @@ namespace TPWinforms_equipo24
             }
             catch (Exception ex)
             {
-                pbxArticulo.Load("https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png");
+                pbxArticulo.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
             }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            frmAgregarArticulo modificar = new frmAgregarArticulo();
+            modificar.ShowDialog();
+            Cargar();
+
         }
     }
 }

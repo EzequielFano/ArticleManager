@@ -44,6 +44,8 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.vivap = new System.Windows.Forms.Label();
+            this.pbxArticuloCarga = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloCarga)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDescripcion
@@ -66,6 +68,7 @@
             this.txtURL.Name = "txtURL";
             this.txtURL.Size = new System.Drawing.Size(117, 20);
             this.txtURL.TabIndex = 5;
+            this.txtURL.Leave += new System.EventHandler(this.txtURL_Leave);
             // 
             // txtPrecio
             // 
@@ -181,11 +184,21 @@
             this.vivap.TabIndex = 23;
             this.vivap.Text = "Marca:";
             // 
+            // pbxArticuloCarga
+            // 
+            this.pbxArticuloCarga.Location = new System.Drawing.Point(294, 67);
+            this.pbxArticuloCarga.Name = "pbxArticuloCarga";
+            this.pbxArticuloCarga.Size = new System.Drawing.Size(226, 184);
+            this.pbxArticuloCarga.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxArticuloCarga.TabIndex = 24;
+            this.pbxArticuloCarga.TabStop = false;
+            // 
             // frmAgregarArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 390);
+            this.ClientSize = new System.Drawing.Size(577, 390);
+            this.Controls.Add(this.pbxArticuloCarga);
             this.Controls.Add(this.vivap);
             this.Controls.Add(this.cboMarca);
             this.Controls.Add(this.txtCodigo);
@@ -205,6 +218,7 @@
             this.Name = "frmAgregarArticulo";
             this.Text = "AgregarArticulo";
             this.Load += new System.EventHandler(this.frmAgregarArticulo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloCarga)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,5 +241,6 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.ComboBox cboMarca;
         private System.Windows.Forms.Label vivap;
+        private System.Windows.Forms.PictureBox pbxArticuloCarga;
     }
 }
