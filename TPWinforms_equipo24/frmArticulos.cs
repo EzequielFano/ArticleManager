@@ -78,5 +78,7 @@ namespace TPWinforms_equipo24
             Cargar();
 
         }
+
+      
     }
 }
