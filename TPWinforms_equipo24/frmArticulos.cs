@@ -63,7 +63,7 @@ namespace TPWinforms_equipo24
             {
                 pbxArticulo.Load(imagen);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 pbxArticulo.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
             }

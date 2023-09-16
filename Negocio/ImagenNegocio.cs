@@ -48,7 +48,7 @@ namespace Negocio
                 datos.setearParametro("@IdArticulo", imagen.IdImagen);
                 datos.setearParametro("@ImagenUrl", imagen.URL);
 
-                datos.ejercutarAccion();
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

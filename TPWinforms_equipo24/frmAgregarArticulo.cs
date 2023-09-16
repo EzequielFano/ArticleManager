@@ -73,7 +73,7 @@ namespace TPWinforms_equipo24
                 ArticulosNegocio negocio = new ArticulosNegocio();
             try
             { 
-                if (articulo != null)
+                if (articulo == null)
                 {
                     articulo = new Articulo();
                 }
@@ -86,9 +86,17 @@ namespace TPWinforms_equipo24
                 articulo.URLImagen.URL = txtURL.Text;
                 articulo.Precio = float.Parse(txtPrecio.Text);
 
+                if (articulo.IdArticulo != 0)
+                {
+                    negocio.modificarArticulo(articulo);
+                    MessageBox.Show("Modificado correctamente");
 
-                negocio.agregarArticulo(articulo);
-                MessageBox.Show("Agregado correctamente");
+                }
+                else
+                {
+                    negocio.agregarArticulo(articulo);
+                    MessageBox.Show("Agregado correctamente");
+                }
 
                
                 Close();
@@ -113,7 +121,7 @@ namespace TPWinforms_equipo24
             {
                 pbxArticuloCarga.Load(imagen);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 pbxArticuloCarga.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
             }

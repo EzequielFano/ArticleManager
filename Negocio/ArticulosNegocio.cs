@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
@@ -69,23 +70,53 @@ namespace Negocio
                 datos.setearParametro("@IdMarca", articulo.Marca.Id);
                 datos.setearParametro("@IdCategoria", articulo.Categoria.Id);
                 datos.setearParametro("@Precio", articulo.Precio);
-                datos.ejercutarAccion();
+                datos.ejecutarAccion();
                 imag = imagenNegocio.ObtenerIDarticuloCargado();
                 datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo,ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)");
                 datos.setearParametro("@IdArticulo", imag.IdImagen);
                 datos.setearParametro("@ImagenUrl", articulo.URLImagen.URL);
-                datos.ejercutarAccion();
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
                          
         }
-        public void eliminarArticulo()
+        public void modificarArticulo(Articulo articulo)
         {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
+                Imagen imag = new Imagen();
+                datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio WHERE Id = @IdArticulo");
+                datos.setearParametro("IdArticulo", articulo.IdArticulo);
+                datos.setearParametro("@Codigo", articulo.CodigoArticulo);
+                datos.setearParametro("@Nombre", articulo.NombreArticulo);
+                datos.setearParametro("@Descripcion", articulo.Descripcion);
+                datos.setearParametro("@IdMarca", articulo.Marca.Id);
+                datos.setearParametro("@IdCategoria", articulo.Categoria.Id);
+                datos.setearParametro("@Precio", articulo.Precio);
+                datos.ejecutarAccion();
+                imag = imagenNegocio.ObtenerIDarticuloCargado();
+                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE IdArticulo = @Id");
+                datos.setearParametro("@Id", imag.IdImagen);
+                datos.setearParametro("@ImagenUrl", articulo.URLImagen.URL);
+                datos.ejecutarAccion();
+               
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
         }
     }
 
