@@ -35,6 +35,7 @@
             this.lblFiltroRapido = new System.Windows.Forms.Label();
             this.txtFiltroRapido = new System.Windows.Forms.TextBox();
             this.btnFiltroRapido = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
@@ -107,11 +108,22 @@
             this.btnFiltroRapido.UseVisualStyleBackColor = true;
             this.btnFiltroRapido.Click += new System.EventHandler(this.btnFiltroRapido_Click);
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(328, 447);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(140, 84);
+            this.btnEliminar.TabIndex = 7;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // frmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1083, 543);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnFiltroRapido);
             this.Controls.Add(this.txtFiltroRapido);
             this.Controls.Add(this.lblFiltroRapido);
@@ -139,5 +151,6 @@
         private System.Windows.Forms.Label lblFiltroRapido;
         private System.Windows.Forms.TextBox txtFiltroRapido;
         private System.Windows.Forms.Button btnFiltroRapido;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

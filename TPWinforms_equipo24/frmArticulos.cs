@@ -32,7 +32,7 @@ namespace TPWinforms_equipo24
             listaArticulos = articulosNegocio.TraerListado();
             dgvArticulos.DataSource = listaArticulos;
             ocultarColumnas();
-            //pbxArticulo.Load(listaArticulos[0].URLImagen.URL);
+            pbxArticulo.Load(listaArticulos[0].URLImagen.URL);
             }
             catch (Exception ex)
             {
@@ -104,6 +104,28 @@ namespace TPWinforms_equipo24
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltrada;
             ocultarColumnas();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ArticulosNegocio negocio = new ArticulosNegocio();
+            Articulo seleccionado; 
+            try
+            {
+                DialogResult rta = MessageBox.Show("¿Esta seguro que desea eliminarlo? Dicho articulo no podra ser recuperado.", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(rta == DialogResult.Yes)
+                {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                negocio.eliminarArticulo(seleccionado.IdArticulo);
+                Cargar();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
