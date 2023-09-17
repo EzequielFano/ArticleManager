@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Microsoft.Win32;
 
 namespace Negocio
 {
@@ -130,6 +131,73 @@ namespace Negocio
 
             }
             catch (Exception ex )
+            {
+
+                throw ex;
+            }
+        }
+
+        public List <Articulo> filtrar(string campo, string criterio, string filtro)
+        {
+            List <Articulo> lista = new List<Articulo> ();
+            AccesoDatos datos = new AccesoDatos ();
+            try
+            {
+                string consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, A.IdCategoria, A.IdMarca, C.Descripcion AS Categoria, A.Precio, IM.ImagenUrl\r\nFROM ARTICULOS A\r\nINNER JOIN IMAGENES IM ON A.Id = IM.IdArticulo\r\nINNER JOIN MARCAS M ON A.IdMarca = M.Id\r\nLEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id\r\nWHERE ";
+                if (campo == "Categoria")
+                {
+                    consulta += "C.Descripcion = '" + criterio + "'";
+                }
+                else if(campo == "Marca")
+                {
+                    consulta += "M.Descripcion = '" + criterio + "'";
+                }
+                else 
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "A.Nombre like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "A.Nombre like '%" + filtro + "'";
+                            break;
+                        case "Contiene":
+                            consulta += "A.Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+
+
+
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.IdArticulo = datos.Lector.GetInt32(0);
+                    aux.CodigoArticulo = (string)datos.Lector["Codigo"];
+                    aux.NombreArticulo = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Marca = new Marca();
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                    aux.Precio = (int)datos.Lector.GetSqlMoney(8);
+                    aux.URLImagen = new Imagen();
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                    {
+                        aux.URLImagen.URL = (string)datos.Lector["ImagenUrl"];
+                    }
+                    lista.Add(aux);
+
+                }
+                return lista; 
+            }
+            catch (Exception ex)
             {
 
                 throw ex;

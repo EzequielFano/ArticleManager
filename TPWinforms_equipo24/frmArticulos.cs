@@ -43,6 +43,9 @@ namespace TPWinforms_equipo24
         private void frmArticulos_Load(object sender, EventArgs e)
         {
             Cargar();
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Categoria");
+            cboCampo.Items.Add("Marca");
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -83,28 +86,6 @@ namespace TPWinforms_equipo24
 
         }
 
-        private void btnFiltroRapido_Click(object sender, EventArgs e)
-        {
-            List<Articulo> listaFiltrada;
-            string filtro = txtFiltroRapido.Text;
-
-            if (filtro != "")
-            {
-                listaFiltrada = listaArticulos.FindAll(x => x.NombreArticulo.ToUpper().Contains(filtro.ToUpper())
-                || x.CodigoArticulo.ToUpper().Contains(filtro.ToUpper())
-                || x.Descripcion.ToUpper().Contains(filtro.ToUpper())
-                || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper())
-                || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()));
-            }
-            else
-            {
-                listaFiltrada = listaArticulos;
-            }
-
-            dgvArticulos.DataSource = null;
-            dgvArticulos.DataSource = listaFiltrada;
-            ocultarColumnas();
-        }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -126,6 +107,82 @@ namespace TPWinforms_equipo24
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+        private void btnFiltroRapido_Click(object sender, EventArgs e)
+        {
+            ArticulosNegocio negocio = new ArticulosNegocio();
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltroAvanzado.Text;
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        
+
+        private void txtFiltroRapido_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = txtFiltroRapido.Text;
+
+            if (filtro.Length >= 3)
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.NombreArticulo.ToUpper().Contains(filtro.ToUpper())
+                || x.CodigoArticulo.ToUpper().Contains(filtro.ToUpper())
+                || x.Descripcion.ToUpper().Contains(filtro.ToUpper())
+                || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper())
+                || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaArticulos;
+            }
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboCampo.SelectedItem.ToString();
+            if(opcion == "Categoria")
+            {   
+                CategoriaNegocio categorias = new CategoriaNegocio();   
+                cboCriterio.Items.Clear();
+                foreach(var categoria in categorias.listar()){cboCriterio.Items.Add(categoria);}  
+            }
+            else if (opcion == "Marca")
+            {
+                MarcaNegocio marcas = new MarcaNegocio();
+                cboCriterio.Items.Clear();
+                foreach (var marc in marcas.listar()) { cboCriterio.Items.Add(marc);}
+            }
+            else if(opcion == "Nombre")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+            } 
+
+        }
+
+        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cboCriterio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
