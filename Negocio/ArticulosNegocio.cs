@@ -20,7 +20,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca,A.IdCategoria,A.IdMarca, C.Descripcion Categoria,A.Precio, IM.ImagenUrl from ARTICULOS A INNER join IMAGENES IM ON A.Id= IM.IdArticulo INNER JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id\r\n");
+                datos.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion Marca,A.IdMarca,A.IdCategoria, C.Descripcion Categoria,A.Precio, IM.ImagenUrl from ARTICULOS A INNER join IMAGENES IM ON A.Id= IM.IdArticulo INNER JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id\r\n");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -33,8 +33,16 @@ namespace Negocio
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Categoria = new Categoria();
-                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
-                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                    if (datos.Lector["Categoria"] is DBNull)
+                    {
+                        aux.Categoria = null;
+                    }
+                    else
+                    {
+                        aux.Categoria = new Categoria();
+                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                        aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                    }
                     aux.Precio = (int)datos.Lector.GetSqlMoney(8);
                     aux.URLImagen= new Imagen();
                     if (!(datos.Lector["ImagenUrl"] is DBNull))
@@ -80,7 +88,7 @@ namespace Negocio
             catch (Exception ex)
             {
 
-                throw ex;
+                ;
             }
             finally
             {
@@ -105,10 +113,11 @@ namespace Negocio
                 datos.setearParametro("@Precio", articulo.Precio);
                 datos.ejecutarAccion();
                 imag = imagenNegocio.ObtenerIDarticuloCargado();
-                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE IdArticulo = @Id");
-                datos.setearParametro("@Id", imag.IdImagen);
+                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE Id = @Id");
+                datos.setearParametro("@Id", articulo.IdArticulo);
                 datos.setearParametro("@ImagenUrl", articulo.URLImagen.URL);
                 datos.ejecutarAccion();
+                
                
             }
             catch (Exception ex)

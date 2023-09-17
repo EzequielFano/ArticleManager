@@ -47,7 +47,10 @@ namespace TPWinforms_equipo24
                     txtURL.Text = articulo.URLImagen.URL;
                     cargarImagen(articulo.URLImagen.URL);
                     cboMarca.SelectedValue = articulo.Marca.Id;
+                    if (!(articulo.Categoria == null))
+                    {
                     cboCategoria.SelectedValue = articulo.Categoria.Id;
+                    }
 
 
 
@@ -77,6 +80,7 @@ namespace TPWinforms_equipo24
                 {
                     articulo = new Articulo();
                 }
+                
                 articulo.CodigoArticulo = txtCodigo.Text;
                 articulo.NombreArticulo = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
@@ -90,6 +94,7 @@ namespace TPWinforms_equipo24
                 {
                     negocio.modificarArticulo(articulo);
                     MessageBox.Show("Modificado correctamente");
+                    
 
                 }
                 else
@@ -102,10 +107,10 @@ namespace TPWinforms_equipo24
                 Close();
                 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                MessageBox.Show("Por favor cargue los campos OBLIGATORIOS");
             }
             
         }

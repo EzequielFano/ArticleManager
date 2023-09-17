@@ -43,8 +43,14 @@
             this.lblCodigo = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.cboMarca = new System.Windows.Forms.ComboBox();
-            this.vivap = new System.Windows.Forms.Label();
+            this.lblMarca = new System.Windows.Forms.Label();
             this.pbxArticuloCarga = new System.Windows.Forms.PictureBox();
+            this.lblObliCodigo = new System.Windows.Forms.Label();
+            this.lblObliNombre = new System.Windows.Forms.Label();
+            this.lblObliDescr = new System.Windows.Forms.Label();
+            this.lblObliMarca = new System.Windows.Forms.Label();
+            this.lblObliCate = new System.Windows.Forms.Label();
+            this.lblObliPrecio = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticuloCarga)).BeginInit();
             this.SuspendLayout();
             // 
@@ -175,14 +181,14 @@
             this.cboMarca.Size = new System.Drawing.Size(117, 21);
             this.cboMarca.TabIndex = 3;
             // 
-            // vivap
+            // lblMarca
             // 
-            this.vivap.AutoSize = true;
-            this.vivap.Location = new System.Drawing.Point(106, 154);
-            this.vivap.Name = "vivap";
-            this.vivap.Size = new System.Drawing.Size(40, 13);
-            this.vivap.TabIndex = 23;
-            this.vivap.Text = "Marca:";
+            this.lblMarca.AutoSize = true;
+            this.lblMarca.Location = new System.Drawing.Point(106, 154);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(40, 13);
+            this.lblMarca.TabIndex = 23;
+            this.lblMarca.Text = "Marca:";
             // 
             // pbxArticuloCarga
             // 
@@ -193,13 +199,79 @@
             this.pbxArticuloCarga.TabIndex = 24;
             this.pbxArticuloCarga.TabStop = false;
             // 
+            // lblObliCodigo
+            // 
+            this.lblObliCodigo.AutoSize = true;
+            this.lblObliCodigo.ForeColor = System.Drawing.Color.Red;
+            this.lblObliCodigo.Location = new System.Drawing.Point(95, 73);
+            this.lblObliCodigo.Name = "lblObliCodigo";
+            this.lblObliCodigo.Size = new System.Drawing.Size(11, 13);
+            this.lblObliCodigo.TabIndex = 25;
+            this.lblObliCodigo.Text = "*";
+            // 
+            // lblObliNombre
+            // 
+            this.lblObliNombre.AutoSize = true;
+            this.lblObliNombre.ForeColor = System.Drawing.Color.Red;
+            this.lblObliNombre.Location = new System.Drawing.Point(91, 102);
+            this.lblObliNombre.Name = "lblObliNombre";
+            this.lblObliNombre.Size = new System.Drawing.Size(11, 13);
+            this.lblObliNombre.TabIndex = 26;
+            this.lblObliNombre.Text = "*";
+            // 
+            // lblObliDescr
+            // 
+            this.lblObliDescr.AutoSize = true;
+            this.lblObliDescr.ForeColor = System.Drawing.Color.Red;
+            this.lblObliDescr.Location = new System.Drawing.Point(73, 128);
+            this.lblObliDescr.Name = "lblObliDescr";
+            this.lblObliDescr.Size = new System.Drawing.Size(11, 13);
+            this.lblObliDescr.TabIndex = 27;
+            this.lblObliDescr.Text = "*";
+            // 
+            // lblObliMarca
+            // 
+            this.lblObliMarca.AutoSize = true;
+            this.lblObliMarca.ForeColor = System.Drawing.Color.Red;
+            this.lblObliMarca.Location = new System.Drawing.Point(98, 157);
+            this.lblObliMarca.Name = "lblObliMarca";
+            this.lblObliMarca.Size = new System.Drawing.Size(11, 13);
+            this.lblObliMarca.TabIndex = 28;
+            this.lblObliMarca.Text = "*";
+            // 
+            // lblObliCate
+            // 
+            this.lblObliCate.AutoSize = true;
+            this.lblObliCate.ForeColor = System.Drawing.Color.Red;
+            this.lblObliCate.Location = new System.Drawing.Point(85, 184);
+            this.lblObliCate.Name = "lblObliCate";
+            this.lblObliCate.Size = new System.Drawing.Size(11, 13);
+            this.lblObliCate.TabIndex = 29;
+            this.lblObliCate.Text = "*";
+            // 
+            // lblObliPrecio
+            // 
+            this.lblObliPrecio.AutoSize = true;
+            this.lblObliPrecio.ForeColor = System.Drawing.Color.Red;
+            this.lblObliPrecio.Location = new System.Drawing.Point(100, 237);
+            this.lblObliPrecio.Name = "lblObliPrecio";
+            this.lblObliPrecio.Size = new System.Drawing.Size(11, 13);
+            this.lblObliPrecio.TabIndex = 30;
+            this.lblObliPrecio.Text = "*";
+            // 
             // frmAgregarArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(577, 390);
+            this.Controls.Add(this.lblObliPrecio);
+            this.Controls.Add(this.lblObliCate);
+            this.Controls.Add(this.lblObliMarca);
+            this.Controls.Add(this.lblObliDescr);
+            this.Controls.Add(this.lblObliNombre);
+            this.Controls.Add(this.lblObliCodigo);
             this.Controls.Add(this.pbxArticuloCarga);
-            this.Controls.Add(this.vivap);
+            this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.cboMarca);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.lblCodigo);
@@ -240,7 +312,13 @@
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.ComboBox cboMarca;
-        private System.Windows.Forms.Label vivap;
+        private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.PictureBox pbxArticuloCarga;
+        private System.Windows.Forms.Label lblObliCodigo;
+        private System.Windows.Forms.Label lblObliNombre;
+        private System.Windows.Forms.Label lblObliDescr;
+        private System.Windows.Forms.Label lblObliMarca;
+        private System.Windows.Forms.Label lblObliCate;
+        private System.Windows.Forms.Label lblObliPrecio;
     }
 }
