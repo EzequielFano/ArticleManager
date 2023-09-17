@@ -32,7 +32,7 @@ namespace TPWinforms_equipo24
             listaArticulos = articulosNegocio.TraerListado();
             dgvArticulos.DataSource = listaArticulos;
             ocultarColumnas();
-            pbxArticulo.Load(listaArticulos[0].URLImagen.URL);
+            //pbxArticulo.Load(listaArticulos[0].URLImagen.URL);
             }
             catch (Exception ex)
             {
@@ -83,9 +83,6 @@ namespace TPWinforms_equipo24
 
         }
 
-<<<<<<< HEAD
-      
-=======
         private void btnFiltroRapido_Click(object sender, EventArgs e)
         {
             List<Articulo> listaFiltrada;
@@ -108,6 +105,5 @@ namespace TPWinforms_equipo24
             dgvArticulos.DataSource = listaFiltrada;
             ocultarColumnas();
         }
->>>>>>> cc00f0f22986b1b96f10b087639f2f4a707f0616
     }
 }

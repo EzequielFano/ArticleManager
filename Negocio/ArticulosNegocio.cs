@@ -91,10 +91,10 @@ namespace Negocio
         public void modificarArticulo(Articulo articulo)
         {
             AccesoDatos datos = new AccesoDatos();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+            Imagen imag = new Imagen();
             try
             {
-                ImagenNegocio imagenNegocio = new ImagenNegocio();
-                Imagen imag = new Imagen();
                 datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio WHERE Id = @IdArticulo");
                 datos.setearParametro("IdArticulo", articulo.IdArticulo);
                 datos.setearParametro("@Codigo", articulo.CodigoArticulo);
