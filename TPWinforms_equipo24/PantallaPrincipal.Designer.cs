@@ -61,7 +61,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.salirToolStripMenuItem.Text = "Salir ";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -86,6 +86,7 @@
             this.ezequielFanoToolStripMenuItem.Name = "ezequielFanoToolStripMenuItem";
             this.ezequielFanoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ezequielFanoToolStripMenuItem.Text = "Ezequiel Fano";
+            this.ezequielFanoToolStripMenuItem.Click += new System.EventHandler(this.ezequielFanoToolStripMenuItem_Click);
             // 
             // richTextBox1
             // 
