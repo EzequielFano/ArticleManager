@@ -21,7 +21,7 @@ namespace TPWinforms_equipo24
         }
         private void ocultarColumnas()
         {
-            dgvArticulos.Columns["IdArticulo"].Visible = false;
+            //dgvArticulos.Columns["IdArticulo"].Visible = false;
             dgvArticulos.Columns["URLImagen"].Visible = false;
         }
         private void Cargar()

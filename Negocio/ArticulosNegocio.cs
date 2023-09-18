@@ -113,8 +113,8 @@ namespace Negocio
                 datos.setearParametro("@IdCategoria", articulo.Categoria.Id);
                 datos.setearParametro("@Precio", articulo.Precio);
                 datos.ejecutarAccion();
-                imag = imagenNegocio.ObtenerIDarticuloCargado();
-                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE Id = @Id");
+               
+                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE IdArticulo = @Id");
                 datos.setearParametro("@Id", articulo.IdArticulo);
                 datos.setearParametro("@ImagenUrl", articulo.URLImagen.URL);
                 datos.ejecutarAccion();
