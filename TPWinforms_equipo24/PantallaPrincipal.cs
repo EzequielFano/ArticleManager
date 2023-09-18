@@ -27,5 +27,11 @@ namespace TPWinforms_equipo24
             frmArticulos alta = new frmArticulos();
             alta.ShowDialog();
         }
+
+        private void francoDanelonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPresentacionFranco go = new frmPresentacionFranco();
+            go.ShowDialog();
+        }
     }
 }

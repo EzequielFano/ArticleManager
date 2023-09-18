@@ -67,13 +67,14 @@
             // francoDanelonToolStripMenuItem
             // 
             this.francoDanelonToolStripMenuItem.Name = "francoDanelonToolStripMenuItem";
-            this.francoDanelonToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.francoDanelonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.francoDanelonToolStripMenuItem.Text = "Franco Danelon";
+            this.francoDanelonToolStripMenuItem.Click += new System.EventHandler(this.francoDanelonToolStripMenuItem_Click);
             // 
             // ezequielFanoToolStripMenuItem
             // 
             this.ezequielFanoToolStripMenuItem.Name = "ezequielFanoToolStripMenuItem";
-            this.ezequielFanoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.ezequielFanoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ezequielFanoToolStripMenuItem.Text = "Ezequiel Fano";
             // 
             // richTextBox1
@@ -107,6 +108,7 @@
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmPantallaPrincipala";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

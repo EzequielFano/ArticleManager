@@ -108,11 +108,45 @@ namespace TPWinforms_equipo24
                 MessageBox.Show(ex.ToString());
             }
         }
+        private bool campoIncompleto()
+        {
+            if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor cargue los campos a filtrar");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        private bool criterioIncompleto()
+        {
+            if (cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor cargue los campos a filtrar");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
         private void btnFiltroRapido_Click(object sender, EventArgs e)
         {
             ArticulosNegocio negocio = new ArticulosNegocio();
             try
             {
+                if (campoIncompleto())
+                {
+                    return;
+                }
+                if (criterioIncompleto())
+                {
+                    return;
+                }
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = txtFiltroAvanzado.Text;
@@ -121,7 +155,7 @@ namespace TPWinforms_equipo24
             catch (Exception)
             {
 
-                throw;
+                MessageBox.Show("Error al filtrar");
             }
         }
 
@@ -175,14 +209,10 @@ namespace TPWinforms_equipo24
 
         }
 
-        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnDesfiltrar_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void cboCriterio_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            txtFiltroAvanzado.Text = "";
+            Cargar();
         }
     }
 }
