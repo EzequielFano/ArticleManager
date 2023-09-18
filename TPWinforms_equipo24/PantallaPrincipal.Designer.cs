@@ -30,6 +30,7 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.francoDanelonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ezequielFanoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,9 +52,18 @@
             // 
             // opcionesToolStripMenuItem
             // 
+            this.opcionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salirToolStripMenuItem});
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.opcionesToolStripMenuItem.Text = "Opciones";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Text = "Salir ";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // aboutUsToolStripMenuItem
             // 
@@ -79,9 +89,13 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(280, 152);
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.Menu;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.ForestGreen;
+            this.richTextBox1.Location = new System.Drawing.Point(211, 139);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(274, 50);
+            this.richTextBox1.Size = new System.Drawing.Size(401, 87);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "Bienvenidos a nuestra aplicacion de gestion de articulos\n\n   Por favor presiona e" +
     "l siguiente boton para continuar";
@@ -90,7 +104,7 @@
             // 
             this.btnStart.BackColor = System.Drawing.Color.Lime;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStart.Location = new System.Drawing.Point(280, 232);
+            this.btnStart.Location = new System.Drawing.Point(275, 232);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(274, 61);
             this.btnStart.TabIndex = 2;
@@ -112,7 +126,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmPantallaPrincipala";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gestion de Articulos";
+            this.Text = "Bienvenida";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -129,5 +143,6 @@
         private System.Windows.Forms.ToolStripMenuItem ezequielFanoToolStripMenuItem;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
     }
 }

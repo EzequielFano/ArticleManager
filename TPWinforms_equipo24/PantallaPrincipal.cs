@@ -33,5 +33,10 @@ namespace TPWinforms_equipo24
             frmPresentacionFranco go = new frmPresentacionFranco();
             go.ShowDialog();
         }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
